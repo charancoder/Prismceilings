@@ -13,7 +13,7 @@ export default function ImageCarousel({ images, interval = 5000, className = '' 
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
   useEffect(() => {
-    let timer: NodeJS.Timeout;
+    let timer: ReturnType<typeof setInterval>;
     if (isAutoPlaying) {
       timer = setInterval(() => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
