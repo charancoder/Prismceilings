@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { PerspectiveCamera, Float, Text3D, OrbitControls } from '@react-three/drei';
+import { PerspectiveCamera, Float, OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 
 type SectionSceneProps = {
@@ -11,11 +11,13 @@ type SectionSceneProps = {
 
 // Gypsum Ceiling Scene
 function GypsumModel() {
-  const group = useRef();
+  const group = useRef<THREE.Group>(null);
   
   useFrame((state) => {
-    group.current.rotation.y = Math.sin(state.clock.getElapsedTime() * 0.2) * 0.2;
-    group.current.rotation.x = Math.sin(state.clock.getElapsedTime() * 0.1) * 0.1;
+    if (group.current) {
+      group.current.rotation.y = Math.sin(state.clock.getElapsedTime() * 0.2) * 0.2;
+      group.current.rotation.x = Math.sin(state.clock.getElapsedTime() * 0.1) * 0.1;
+    }
   });
 
   return (
@@ -55,11 +57,13 @@ function GypsumModel() {
 
 // PVC Ceiling Scene
 function PVCModel() {
-  const group = useRef();
+  const group = useRef<THREE.Group>(null);
   
   useFrame((state) => {
-    group.current.rotation.y = Math.sin(state.clock.getElapsedTime() * 0.2) * 0.2;
-    group.current.rotation.x = Math.sin(state.clock.getElapsedTime() * 0.1) * 0.1;
+    if (group.current) {
+      group.current.rotation.y = Math.sin(state.clock.getElapsedTime() * 0.2) * 0.2;
+      group.current.rotation.x = Math.sin(state.clock.getElapsedTime() * 0.1) * 0.1;
+    }
   });
 
   return (
@@ -96,11 +100,13 @@ function PVCModel() {
 
 // Grid Ceiling Scene
 function GridModel() {
-  const group = useRef();
+  const group = useRef<THREE.Group>(null);
   
   useFrame((state) => {
-    group.current.rotation.y = Math.sin(state.clock.getElapsedTime() * 0.2) * 0.2;
-    group.current.rotation.x = Math.sin(state.clock.getElapsedTime() * 0.1) * 0.1;
+    if (group.current) {
+      group.current.rotation.y = Math.sin(state.clock.getElapsedTime() * 0.2) * 0.2;
+      group.current.rotation.x = Math.sin(state.clock.getElapsedTime() * 0.1) * 0.1;
+    }
   });
 
   return (
@@ -154,10 +160,12 @@ function GridModel() {
 
 // Services Model
 function ServicesModel() {
-  const group = useRef();
+  const group = useRef<THREE.Group>(null);
   
   useFrame((state) => {
-    group.current.rotation.y = state.clock.getElapsedTime() * 0.2;
+    if (group.current) {
+      group.current.rotation.y = state.clock.getElapsedTime() * 0.2;
+    }
   });
 
   return (
@@ -209,7 +217,7 @@ function ServicesModel() {
   );
 }
 
-export default function SectionScene({ type, position = [0, 0, 0], className = '' }: SectionSceneProps) {
+export default function SectionScene({ type, className = '' }: SectionSceneProps) {
   let Model;
   
   switch (type) {
