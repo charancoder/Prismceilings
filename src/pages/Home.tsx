@@ -92,7 +92,8 @@ export default function Home() {
                 <span>Explore Services</span>
                 <ArrowRight size={18} />
               </button>
-              <Link onClick={scrollTocalculator} className="btn flex items-center gap-2">
+               <Link to="/#calculator" onClick={scrollTocalculator} className="btn flex items-center gap-2">
+
                 <span>Calculate Costs</span>
                 <ArrowRight size={18} />
               </Link>
