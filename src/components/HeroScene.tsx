@@ -3,12 +3,14 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { PerspectiveCamera, Float } from '@react-three/drei';
 import * as THREE from 'three';
 
-function CeilingPanel({ position, rotation, scale, color }) {
-  const mesh = useRef();
+function CeilingPanel({ position, rotation, scale, color }: { position: [number, number, number]; rotation: [number, number, number]; scale: [number, number, number]; color: string }) {
+  const mesh = useRef<THREE.Mesh>(null);
   
   useFrame((state) => {
-    mesh.current.rotation.x = Math.sin(state.clock.getElapsedTime() * 0.2) * 0.05;
-    mesh.current.rotation.y = Math.sin(state.clock.getElapsedTime() * 0.1) * 0.05;
+    if (mesh.current) {
+      mesh.current.rotation.x = Math.sin(state.clock.getElapsedTime() * 0.2) * 0.05;
+      mesh.current.rotation.y = Math.sin(state.clock.getElapsedTime() * 0.1) * 0.05;
+    }
   });
 
   return (
@@ -27,10 +29,12 @@ function CeilingPanel({ position, rotation, scale, color }) {
 }
 
 function PrismLogo() {
-  const group = useRef();
+  const group = useRef<THREE.Group>(null);
   
   useFrame((state) => {
-    group.current.rotation.y = Math.sin(state.clock.getElapsedTime() * 0.3) * 0.2;
+    if (group.current) {
+      group.current.rotation.y = Math.sin(state.clock.getElapsedTime() * 0.3) * 0.2;
+    }
   });
 
   return (
